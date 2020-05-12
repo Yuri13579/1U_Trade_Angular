@@ -1,0 +1,48 @@
+
+<br><button type="button" class="btn btn-outline-warning" (click)="getAllProvider()">searsch AllProvider</button>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="table-warning">
+      <td scope="col">providerId</td>
+      <td scope="col">name</td>
+      <td scope="col">phone</td>
+      <td scope="col">address</td>
+      <td scope="col">edit </td>
+      <td scope="col">delete </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let provider of providers">
+        <td>{{ provider.providerId }} </td>
+      <td><input type="text" [(ngModel)]="provider.name"></td>
+      <td><input type="number" [(ngModel)]="provider.phone"></td>
+      <td><input type="text" [(ngModel)]="provider.address"></td>
+      <td><button (click)="putProvider(provider)">Edit</button> </td>
+      <td><button (click)="deleteProviderById(provider.providerId)">deleteprovider</button> </td>
+    </tr>
+    <tbody>
+  </table>
+
+
+  <div [hidden] = "isShow">
+      <h1>Add new provider</h1>
+      <p><b>enter provider name:</b><br>
+      <input type="text" [(ngModel)]= postData.name>
+      <p><b>enter provider phone:</b><br>
+      <input type="number" [(ngModel)]= postData.phone>
+      <p><b>enter provider address:</b><br>
+        <input type="text" [(ngModel)]= postData.address>
+
+    <br><button type="button" class="btn btn-outline-warning" (click)="postProvider()">postprovider</button>
+    <div *ngIf="providerPost">
+    <pre>
+      <h2>provider</h2>
+          <p> providerId{{providerPost.providerId}} </p>
+          <p> Name{{providerPost.name}} </p>
+          <p> phone{{providerPost.phone}} </p>
+          <p> phone{{providerPost.address}} </p>
+        </pre>
+    </div>
+ </div>
+      <button class="btn btn-outline-warning" (click) = "togglePostProvider()">adding new</button>

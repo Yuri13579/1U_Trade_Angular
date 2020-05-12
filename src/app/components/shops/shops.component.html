@@ -1,0 +1,38 @@
+
+<br><button type="button" class="btn btn-outline-success" (click)="getAllShop()">searsch AllShops</button>
+
+  <table class="table table-striped">
+    <tr class="table-success">
+      <td scope="col">shopId</td>
+      <td scope="col">name</td>
+      <td scope="col">address</td>
+      <td scope="col">edit </td>
+      <td scope="col">delete </td>
+    </tr>
+    <tr *ngFor="let shop of shops">
+        <td>{{ shop.shopId }} </td>
+      <td><input type="text" [(ngModel)]="shop.name"></td>
+      <td><input type="text" [(ngModel)]="shop.address"></td>
+         <td><button (click)="putShop(shop)">Edit</button> </td>
+      <td><button (click)="deleteShopById(shop.shopId)">deleteShop</button> </td>
+    </tr>
+  </table>
+
+  <div [hidden] = "isShow">
+    <h1>Add new shop</h1>
+    <p><b>enter shop name:</b><br>
+    <input type="text" [(ngModel)]= postData.name>
+    <p><b>enter shop address:</b><br>
+      <input type="text" [(ngModel)]= postData.address>
+
+  <br><button type="button" class="btn btn-outline-success" (click)="postShop()">postshop</button>
+  <div *ngIf="shopPost">
+  <pre>
+    <h2>shop</h2>
+        <p> shopId{{shopPost.shopId}} </p>
+        <p> Name{{shopPost.name}} </p>
+        <p> phone{{shopPost.address}} </p>
+      </pre>
+  </div>
+</div>
+    <button class="btn btn-outline-success"  (click) = "togglePostShop()">adding new</button>

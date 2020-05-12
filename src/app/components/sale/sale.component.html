@@ -1,0 +1,41 @@
+
+
+<br><button type="button" class="btn btn-outline-secondary" (click)="getAllSale()">searsch AllSale</button>
+
+  <table class="table table-striped">
+    <tr class="table-active">
+      <td scope="col">saleOrderID</td>
+      <td scope="col">productName</td>
+      <td scope="col">count</td>
+      <td scope="col">priceCost</td>
+      <td scope="col">priseSale </td>
+      <td scope="col">summ </td>
+      <td scope="col">shopName </td>
+    </tr>
+    <tr *ngFor="let currentSale of currentSales">
+      <td>{{ currentSale.saleOrderID }} </td>
+      <td><input type="text" [(ngModel)]="currentSale.productName"></td>
+      <td><input type="text" [(ngModel)]="currentSale.count"></td>
+      <td>
+        <div class="input-group-append">
+        <input type="text" [(ngModel)]="currentSale.priceCost">
+        <span class="input-group-text">$</span>
+      </div>
+      </td>
+      <td>
+        <div class="input-group-append">
+          <input type="text"  [(ngModel)]="currentSale.priseSale">
+          <span class="input-group-text">$</span>
+        </div>
+      </td>
+      <td>
+          <div class="input-group-append">
+            <input type="text" [(ngModel)]="currentSale.summ" >
+            <span class="input-group-text">$</span>
+          </div>
+      </td>
+      <td><input type="text" [(ngModel)]="currentSale.shopName"></td>
+
+    </tr>
+  </table>
+

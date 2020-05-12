@@ -1,0 +1,63 @@
+
+<br><button type="button" class="btn btn-outline-primary" (click)="getAllProduct()">searsch AllProduct</button>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr class="table-primary">
+      <td scope="col">productId</td>
+      <td scope="col">name</td>
+      <td scope="col">description</td>
+      <td scope="col">barcode</td>
+      <td scope="col">priceCost</td>
+      <td scope="col">priseSale</td>
+      <td scope="col">edit </td>
+      <td scope="col">delete </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+        <td>{{ product.productId }} </td>
+      <td><input type="text" [(ngModel)]="product.name"></td>
+      <td><input type="text" [(ngModel)]="product.description"></td>
+      <td><input type="text" [(ngModel)]="product.barcode"></td>
+      <td><input type="nunumber" [(ngModel)]="product.priceCost"></td>
+      <td><input type="number" [(ngModel)]="product.priseSale"></td>
+      <td><button (click)="putProduct(product)">Edit</button> </td>
+      <td><button (click)="deleteProductById(product.productId)">deleteProduct</button> </td>
+    </tr>
+    <tbody>
+  </table>
+
+  <div [hidden] = "isShow">
+    <h1>Add new product</h1>
+    <p><b>enter Product name:</b><br>
+    <input type="text" [(ngModel)]= postData.name>
+    <p><b>enter Product description:</b><br>
+    <input type="text" [(ngModel)]= postData.description>
+    <p><b>enter Product barcode:</b><br>
+      <input type="number" [(ngModel)]= postData.barcode>
+      <p><b>enter Product priceCost:</b><br>
+        <input type="number" [(ngModel)]= postData.priceCost>
+        <p><b>enter Product priseSale:</b><br>
+          <input type="number" [(ngModel)]= postData.priseSale>
+
+  <br><button type="button" class="btn btn-outline-primary" (click)="postProduct()">postProduct</button>
+  <div *ngIf="productPost">
+  <pre>
+    <h2>Product</h2>
+        <p> productId{{productPost.productId}} </p>
+        <p> Name{{productPost.name}} </p>
+        <p> description{{productPost.description}} </p>
+    </pre>
+  </div>
+  </div>
+<button class="btn btn-outline-primary" (click) = "togglePostProduct()">adding new</button>
+
+
+  <!-- <h1>Delete product</h1>
+  <p><b>enter Product Id:</b><br>
+   <input type="text" [(ngModel)]= deleteID>
+
+<br><button (click)="deleteProduct()">deleteProduct</button> -->
+
+

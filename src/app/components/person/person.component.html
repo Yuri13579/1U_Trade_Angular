@@ -1,0 +1,39 @@
+
+<br><button type="button" class="btn btn-outline-info" (click)="getAllPerson()">searsch AllPersons</button>
+
+<table class="table table-striped">
+  <tr class="table-info">
+    <td scope="col">personId</td>
+    <td scope="col">firstName</td>
+    <td scope="col">lastName</td>
+    <td scope="col">edit </td>
+    <td scope="col">delete </td>
+  </tr>
+  <tr *ngFor="let person of persons">
+      <td>{{ person.personId }} </td>
+    <td><input type="text" [(ngModel)]="person.firstName"></td>
+    <td><input type="text" [(ngModel)]="person.lastName"></td>
+       <td><button (click)="putPerson(person)">Edit</button> </td>
+    <td><button (click)="deletePersonById(person.personId)">deleteperson</button> </td>
+  </tr>
+</table>
+
+<div [hidden] = "isShow">
+  <h1>Add new person</h1>
+  <p><b>enter person firstName:</b><br>
+  <input type="text" [(ngModel)]= postData.firstName>
+  <p><b>enter person lastName:</b><br>
+    <input type="text" [(ngModel)]= postData.lastName>
+
+<br><button type="button" class="btn btn-outline-info" (click)="postPerson()">postPerson</button>
+<div *ngIf="personPost">
+<pre>
+  <h2>person</h2>
+      <p> personId{{personPost.personId}} </p>
+      <p> firstName{{personPost.firstName}} </p>
+      <p> phone{{personPost.lastName}} </p>
+    </pre>
+</div>
+</div>
+  <button class="btn btn-outline-info"  (click) = "togglePostPerson()">adding new</button>
+
