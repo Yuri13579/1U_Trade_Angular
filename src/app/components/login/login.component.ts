@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 import {ToasterService} from 'angular2-toaster';
-import {AppService} from './../app.service';
+import {AppService} from './../../app.service';
 import { LoginResponse } from 'src/app.models';
 import {catchError} from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   jwtHelper: JwtHelperService = new JwtHelperService();
   constructor(private http: HttpClient,
               public readonly toasterService: ToasterService,
-              private readonly appService: AppService
+              private readonly appService: AppService,
+              private router: Router
               ) {
 
   }
@@ -49,9 +51,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.appService.getToken(res.token);
       this.toasterService.pop('success', 'Login succesfull');
+      this.router.navigate(['/sale']);
       const decodeAuthToken = this.jwtHelper.decodeToken(res.token);
-    console.warn('decodeAuthToken', decodeAuthToken);
-
+      console.warn('decodeAuthToken', decodeAuthToken);
   }
     });
 

@@ -13,7 +13,7 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { ShopsComponent } from './components/shops/shops.component';
 import { SellGoodsComponent } from './components/sell-goods/sell-goods.component';
 import { ProviderComponent } from './components/provider/provider.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import {ToasterModule} from 'angular2-toaster';
 import { from } from 'rxjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,9 +22,11 @@ import { TokenInterception } from './token.interception';
 import { AuthGuard } from './auth.guard';
 import { RoleAuthGuard as RoleGuard } from './role.auth.guard';
 import { PersonComponent } from './components/person/person.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const appRoutes: Routes = [
 {path: 'login', component: LoginComponent},
+{path: 'logout', component: LogoutComponent},
 {path: 'sale', component: SaleComponent, canActivate: [AuthGuard]},
 {path: 'product', component: ProductComponent, canActivate: [AuthGuard]},
 {path: 'shop', component: ShopsComponent, canActivate: [AuthGuard]},
@@ -56,7 +58,8 @@ export function tokenGetter() {
     SellGoodsComponent,
     ProviderComponent,
     LoginComponent,
-    PersonComponent
+    PersonComponent,
+    LogoutComponent
     ],
   imports: [
     BrowserModule,

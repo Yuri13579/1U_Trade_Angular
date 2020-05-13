@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
+import { ToasterService } from 'angular2-toaster';
+
 
 
 @Injectable({
@@ -16,7 +18,8 @@ export class AppService {
   // getToken$ = this.tokenToShow.asObservable();
     getToken$ = this.token2;
 
-  constructor(private http: HttpClient, router: Router, private location: Location) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private http: HttpClient, private router: Router, private location: Location, public readonly toasterService: ToasterService) { }
 
   getToken(token: string) {
     console.warn('getToken', token);
@@ -35,7 +38,8 @@ export class AppService {
 
   logOut() {
     if (!this.location.isCurrentPathEqualTo('/login')) {
-      this.tokenToShow.next(null);
+      console.warn('logOut from', this.location);
+      // this.tokenToShow.next(null);
       localStorage.setItem('currentUser', JSON.stringify({ token: null, name: name }));
       this.toasterService.pop('success', 'Your are now logged out');
       this.router.navigate(['/login']);

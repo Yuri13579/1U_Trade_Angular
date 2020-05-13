@@ -3,6 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
    <div class="container">
       <a *ngIf="!loginCheck" class="btn btn-dark" routerLink="/login">login</a><br>
+      <a *ngIf="loginCheck" class="btn btn-dark" routerLink="/logout">logout</a><br>
       <a *ngIf="loginCheck" class="btn btn-dark" routerLink="/sale">Sale history</a><br>
       <a *ngIf="loginCheck" class="btn btn-primary" routerLink="/product">product</a><br>
       <a *ngIf="loginCheck" class="btn btn-success" routerLink="/shop" routerLinkActive="active">shop</a><br>
