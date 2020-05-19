@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-provider',
@@ -8,7 +9,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProviderComponent implements OnInit {
 
-  currentHost = 'https://localhost:44307';
   userName: number;
   response: any;
   providers: any;
@@ -35,7 +35,7 @@ export class ProviderComponent implements OnInit {
   }
 
   getAllProvider() {
-    this.http.get(this.currentHost + '/api/Provider/')
+    this.http.get(environment.apiUrl + '/api/Provider/')
      .subscribe((response2) => {
     this.providers = response2;
     console.log(this.providers);
@@ -43,7 +43,7 @@ export class ProviderComponent implements OnInit {
 }
 
 postProvider() {
-  this.http.post(this.currentHost + '/api/Provider/PostProvider', this.postData,
+  this.http.post(environment.apiUrl + '/api/Provider/PostProvider', this.postData,
   ).toPromise()
 .then( (data: any) => {
   console.log(data);
@@ -54,7 +54,7 @@ postProvider() {
 
 deleteProviderById(id) {
    console.log('deleteProviderById '+ id);
-   this.http.delete(this.currentHost + '/api/Provider/DeleteProvider/' + id, {
+   this.http.delete(environment.apiUrl + '/api/Provider/DeleteProvider/' + id, {
   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
 }
 ).toPromise()
@@ -72,7 +72,7 @@ this.putProviderData.name = x.name;
 this.putProviderData.phone = x.phone;
 this.putProviderData.address = x.address;
 console.log(this.putProviderData);
-this.http.put(this.currentHost + '/api/Provider/PutProvider', this.putProviderData )
+this.http.put(environment.apiUrl + '/api/Provider/PutProvider', this.putProviderData )
 .toPromise()
 .then( (data: any) => {
   console.log(data);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shops',
@@ -7,7 +8,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./shops.component.css']
 })
 export class ShopsComponent implements OnInit {
-  currentHost = 'https://localhost:44307';
   shops: any;
   putProductData = {
     shopId: 0,
@@ -28,7 +28,7 @@ export class ShopsComponent implements OnInit {
   }
 
   getAllShop() {
-    this.http.get(this.currentHost + '/api/Shop/GetAllShops')
+    this.http.get(environment.apiUrl + '/api/Shop/GetAllShops')
      .subscribe((response2) => {
     this.shops = response2;
     console.log(this.shops);
@@ -41,7 +41,7 @@ putShop(x) {
   this.putProductData.name = x.name;
   this.putProductData.address = x.address;
   console.log(this.putProductData);
-  this.http.put(this.currentHost + '/api/Shop/PutShop', this.putProductData , {
+  this.http.put(environment.apiUrl + '/api/Shop/PutShop', this.putProductData , {
     headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
 })
   .toPromise()
@@ -53,7 +53,7 @@ putShop(x) {
 
 deleteShopById(id) {
   console.log('deleteShopById '+ id);
-  this.http.delete(this.currentHost + '/api/Shop/DeleteShop/' + id, {
+  this.http.delete(environment.apiUrl + '/api/Shop/DeleteShop/' + id, {
  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
 }
 ).toPromise()
@@ -65,7 +65,7 @@ this.shopPost = JSON.stringify(data.json);
 }
 
 postShop() {
-  this.http.post(this.currentHost + '/api/Shop/PostShop', this.postData,
+  this.http.post(environment.apiUrl + '/api/Shop/PostShop', this.postData,
   ).toPromise()
 .then( (data: any) => {
   console.log(data);

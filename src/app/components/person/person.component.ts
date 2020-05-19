@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-person',
@@ -8,7 +9,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PersonComponent implements OnInit {
 
-  currentHost = 'https://localhost:44307';
   persons: any;
   putPersonData = {
     personId: 0,
@@ -39,7 +39,7 @@ export class PersonComponent implements OnInit {
   }
 
   getAllPerson() {
-    this.http.get(this.currentHost + '/api/Person')
+    this.http.get(environment.apiUrl + '/api/Person')
      .subscribe((response2) => {
     this.persons = response2;
     console.log(this.persons);
@@ -52,7 +52,7 @@ putPerson(x) {
   this.putPersonData.firstName = x.firstName;
   this.putPersonData.lastName = x.lastName;
   console.log(this.putPersonData);
-  this.http.put(this.currentHost + '/api/Person/PutPerson', this.putPersonData , {
+  this.http.put(environment.apiUrl + '/api/Person/PutPerson', this.putPersonData , {
     headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
 })
   .toPromise()
@@ -64,7 +64,7 @@ putPerson(x) {
 
 deletePersonById(id) {
   console.log('deletePersonById '+ id);
-  this.http.delete(this.currentHost + '/api/Person/' + id, {
+  this.http.delete(environment.apiUrl + '/api/Person/' + id, {
  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
 }
 ).toPromise()
@@ -76,7 +76,7 @@ this. personPost = JSON.stringify(data.json);
 }
 
 postPerson() {
-  this.http.post(this.currentHost + '/api/Person', this.postData,
+  this.http.post(environment.apiUrl + '/api/Person', this.postData,
   ).toPromise()
 .then( (data: any) => {
   console.log(data);

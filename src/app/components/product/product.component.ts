@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -7,7 +8,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  currentHost = 'https://localhost:44307';
   userName: number;
   response: any;
   products: any;
@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
   }
 
   getAllProduct() {
-    this.http.get(this.currentHost + '/api/Product/GetAllProducts')
+    this.http.get(environment.apiUrl + '/api/Product/GetAllProducts')
      .subscribe((response2) => {
     this.products = response2;
     console.log(this.products);
@@ -46,7 +46,7 @@ export class ProductComponent implements OnInit {
 }
 
     postProduct() {
-      this.http.post(this.currentHost + '/api/Product/AddProduct', this.postData,
+      this.http.post(environment.apiUrl + '/api/Product/AddProduct', this.postData,
       ).toPromise()
     .then( (data: any) => {
       console.log(data);
@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
 
   deleteProductById(id) {
        console.log('deleteProductById '+ id);
-       this.http.delete(this.currentHost + '/api/Product/Delete/' + id, {
+       this.http.delete(environment.apiUrl + '/api/Product/Delete/' + id, {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
     }
     ).toPromise()
@@ -78,7 +78,7 @@ export class ProductComponent implements OnInit {
     this.putProductData.priceCost = x.priceCost;
     this.putProductData.priseSale = x.priseSale;
     console.log(this.putProductData);
-    this.http.put(this.currentHost + '/api/Product/PutProduct', this.putProductData )
+    this.http.put(environment.apiUrl + '/api/Product/PutProduct', this.putProductData )
     .toPromise()
     .then( (data: any) => {
       console.log(data);
@@ -87,7 +87,7 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(){
-    this.http.delete(this.currentHost + '/api/Product/Delete/' + this.deleteID,
+    this.http.delete(environment.apiUrl + '/api/Product/Delete/' + this.deleteID,
     {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
   }
@@ -100,7 +100,7 @@ export class ProductComponent implements OnInit {
 }
 
 getProduct(){
-  this.http.get(this.currentHost + '/api/Product/GetProductById/'+ this.userName)
+  this.http.get(environment.apiUrl + '/api/Product/GetProductById/'+ this.userName)
    .subscribe((response) => {
   this.response = response;
   console.log(this.response);

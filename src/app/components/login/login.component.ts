@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  currentHost = 'https://localhost:44307';
   postData = {
     email: "em6@gmail.com",
     password:"Password1"

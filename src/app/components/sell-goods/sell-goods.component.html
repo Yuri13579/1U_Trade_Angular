@@ -1,10 +1,10 @@
-<div class = "mt-5">
-  <select class="form-control" [(ngModel)]="selectedProductId">
-    <option *ngFor="let allProduct of allProducts"
-    [selected]="allProduct.productId === selectedProduct"
-    [value]="allProduct.productId">
-        {{ allProduct.name}} <br> {{allProduct.priseSale }}$
-        </option>
+ <h2 id='sel2'> {{selectedShopName}}</h2>
+<select id='sel1' class="form-control" [(ngModel)]="selectedShopId">
+  <option *ngFor="let shop of shops"
+  [selected]="shop.shopId === selectedShopId"
+  [value]="shop.shopId">
+      {{ shop.name}} <br>: {{shop.address }}
+      </option>
 </select>
 
 <div class="input-group">
@@ -14,20 +14,38 @@
     <button class="btn btn-outline-secondary" type="button" (click)="countMinus()">-</button>
   </div>
 </div>
-<!--
-  <input (keyup)="onKey($event)" [(ngModel)]="countInput" ng-init="countInput=1"> -->
 
-
-  <select class="form-control" [(ngModel)]="selectedShopId">
-    <option *ngFor="let shop of shops"
-    [selected]="shop.shopId === selectedShop"
-    [value]="shop.shopId">
-        {{ shop.name}} <br>: {{shop.address }}
+<div class = "mt-5">
+  <select class="form-control" [(ngModel)]="selectedProductId">
+    <option *ngFor="let allProduct of allProducts"
+    [selected]="allProduct.productId === selectedProduct"
+    [value]="allProduct.productId">
+        {{ allProduct.name}} <br> {{allProduct.priseSale }}$
         </option>
 </select>
 
-  <!-- <h1>You selected shop: {{selectedShopId}}</h1> -->
-  <br><button type="button" class="btn btn-outline-danger" (click)="postSell()">createSell</button>
+  <br><button type="button" class="btn btn-outline-danger" (click)="addEmptySell()">addEmptySell</button>
 
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr class="table-primary">
+        <td scope="col">productId</td>
+        <td scope="col">count</td>
+        <td scope="col">shopId</td>
+        <!-- <td scope="col">edit </td>
+        <td scope="col">delete </td> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sell of sells">
+        <td><input type="number" [(ngModel)]="sell.productId"></td>
+        <td><input type="number" [(ngModel)]="sell.count"></td>
+        <td><input type="number" [(ngModel)]="sell.shopId"></td>
+        <!-- <td><button (click)="putProduct(product)">Edit</button> </td>
+        <td><button (click)="deleteProductById(product.productId)">deleteProduct</button> </td> -->
+      </tr>
+      <tbody>
+    </table>
+    <br><button type="button" class="btn btn-outline-danger" (click)="postSell()">createSell</button>
 
 </div>

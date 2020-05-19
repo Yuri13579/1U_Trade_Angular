@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sale',
@@ -9,7 +10,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 export class SaleComponent implements OnInit {
-  currentHost = 'https://localhost:44307';
   loggedIn = true;
   currentSales: any;
   items;
@@ -76,7 +76,7 @@ export class SaleComponent implements OnInit {
 
 getAllSale() {
   // this.http.get('https://api.github.com/users/'+ this.userName)
-  this.http.get(this.currentHost + '/api/SaleOrders/ALLSales')
+  this.http.get(environment.apiUrl + '/api/SaleOrders/ALLSales')
       .subscribe((response2) => {
      this.currentSales = response2;
      console.log(this.currentSales);

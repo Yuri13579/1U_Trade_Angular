@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
 import { ToasterService } from 'angular2-toaster';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -13,7 +14,6 @@ import { ToasterService } from 'angular2-toaster';
 export class AppService {
   [x: string]: any;
 
-  currentHost = 'https://localhost:44307';
   //private tokenToShow = new BehaviorSubject(null);
   // getToken$ = this.tokenToShow.asObservable();
     getToken$ = this.token2;
@@ -33,7 +33,8 @@ export class AppService {
   }
 
   login(loginData) {
-    return this.http.post(`${this.currentHost}/api/Account`, loginData);
+   console.warn('login to', environment.apiUrl);
+   return this.http.post(`${environment.apiUrl}/api/Account`, loginData);
   }
 
   logOut() {
